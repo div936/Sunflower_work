@@ -3,149 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Nidhi 🌻</title>
+    <title>A Walk With You</title>
     <style>
-        body {
+        /* Reset and layout */
+        body, html {
             margin: 0;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-        }
-
-        /* The rolling grass hill */
-        .garden {
-            position: absolute;
-            bottom: 0;
+            padding: 0;
             width: 100%;
-            height: 35%;
-            background: linear-gradient(to bottom, #7CFC00 0%, #228B22 100%);
-            border-top-left-radius: 50% 20%;
-            border-top-right-radius: 50% 20%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Georgia', serif;
         }
 
-        /* Sunflowers */
-        .sunflower {
+        /* An elegant starting screen to set the mood */
+        #start-screen {
             position: absolute;
-            bottom: 5%;
-            transform-origin: bottom center;
-            animation: sway 4s infinite alternate ease-in-out;
-            user-select: none;
-        }
-
-        /* Butterflies */
-        .butterfly {
-            position: absolute;
-            user-select: none;
-            animation: flutter 6s infinite alternate ease-in-out;
-        }
-
-        /* Airplane and Banner Setup */
-        .plane-container {
-            position: absolute;
-            top: 20%;
-            left: -800px; /* Starts off-screen to the left */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0a0a;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            animation: flyAcross 15s linear forwards;
-            animation-delay: 2s; /* Waits 2 seconds before flying in */
-            z-index: 10;
+            z-index: 100;
+            color: white;
+            transition: opacity 2.5s ease;
         }
 
-        /* Rotate the airplane emoji so it flies forward */
-        .plane {
-            font-size: 60px;
-            transform: rotate(90deg);
+        h2 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
         }
 
-        /* The custom sky banner */
-        .banner {
+        button {
+            padding: 12px 35px;
+            font-size: 16px;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.4s ease;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
             background: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            margin-left: 15px;
-            font-size: 28px;
-            color: #d32f2f;
-            font-weight: bold;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            color: black;
+            border-color: white;
+        }
+
+        /* The main scene setup */
+        .scene-container {
+            width: 100vw;
+            height: 100vh;
             position: relative;
-            white-space: nowrap;
         }
 
-        /* The rope connecting the plane to the banner */
-        .banner::before {
-            content: '';
+        /* The realistic image setup */
+        .background-image {
             position: absolute;
-            left: -20px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Make sure the filename matches what you upload exactly */
+            background-image: url('watermarked_img_5130332706140299966.png'); 
+            background-size: cover;
+            background-position: center center;
+            /* This is the magic part: It centers the zoom specifically on the dirt path */
+            transform-origin: 50% 75%; 
+            opacity: 0;
+        }
+
+        /* The walking animation */
+        .walk-animation {
+            /* 25 seconds for a very slow, romantic walk forward */
+            animation: walkIn 25s cubic-bezier(0.35, 0.45, 0.45, 0.95) forwards;
+            opacity: 1;
+        }
+
+        @keyframes walkIn {
+            0% {
+                transform: scale(1);
+                filter: brightness(0.2); /* Starts dark like opening eyes */
+            }
+            15% {
+                filter: brightness(1.1); /* Brightens up like morning */
+            }
+            100% {
+                transform: scale(1.8); /* Zooms in heavily to simulate walking down the path */
+                filter: brightness(1);
+            }
+        }
+
+        /* Proposal Text that fades in midway */
+        .message {
+            position: absolute;
             top: 50%;
-            width: 20px;
-            height: 3px;
-            background: #555;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
+            opacity: 0;
+            pointer-events: none;
+            letter-spacing: 1px;
         }
 
-        /* Animations */
-        @keyframes sway {
-            0% { transform: rotate(-8deg); }
-            100% { transform: rotate(8deg); }
+        .show-message {
+            animation: fadeInOut 12s ease-in-out forwards;
+            animation-delay: 10s; /* Waits 10 seconds into the walk before showing */
         }
 
-        @keyframes flutter {
-            0% { transform: translate(0, 0) rotate(-10deg); }
-            33% { transform: translate(30px, -40px) rotate(15deg); }
-            66% { transform: translate(-20px, -60px) rotate(-5deg); }
-            100% { transform: translate(40px, 20px) rotate(10deg); }
-        }
-
-        @keyframes flyAcross {
-            0% { left: -800px; top: 30%; }
-            50% { top: 15%; }
-            100% { left: 110vw; top: 25%; }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -40%); }
+            20% { opacity: 1; transform: translate(-50%, -50%); }
+            80% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -60%); }
         }
     </style>
 </head>
 <body>
 
-    <div class="garden"></div>
-    
-    <!-- The Airplane & Message -->
-    <div class="plane-container">
-        <div class="plane">🛩️</div>
-        <div class="banner">Nidhi, You are the best!!! ❤️</div>
+    <!-- Start Screen -->
+    <div id="start-screen">
+        <h2>For Nidhi</h2>
+        <button onclick="startWalk()">Take my hand</button>
     </div>
 
-    <!-- JavaScript to generate the garden dynamically -->
-    <script>
-        // Plant the Sunflowers
-        const numSunflowers = 35;
-        for(let i = 0; i < numSunflowers; i++) {
-            let sf = document.createElement('div');
-            sf.className = 'sunflower';
-            sf.innerText = '🌻';
-            // Random horizontal placement
-            sf.style.left = (Math.random() * 95) + 'vw';
-            // Random sizes to create depth
-            sf.style.fontSize = (40 + Math.random() * 40) + 'px';
-            // Randomize the sway timing so they don't move like robots
-            sf.style.animationDelay = (Math.random() * 3) + 's';
-            sf.style.animationDuration = (3 + Math.random() * 2) + 's';
-            // Randomize height slightly along the grass
-            sf.style.bottom = (Math.random() * 25) + 'vh';
-            
-            document.body.appendChild(sf);
-        }
+    <!-- The Scene -->
+    <div class="scene-container">
+        <div class="background-image" id="bg-img"></div>
+        <div class="message" id="msg">Will you walk with me forever?</div>
+    </div>
 
-        // Release the Butterflies
-        const numButterflies = 12;
-        for(let i = 0; i < numButterflies; i++) {
-            let bf = document.createElement('div');
-            bf.className = 'butterfly';
-            bf.innerText = '🦋';
-            bf.style.left = (Math.random() * 90) + 'vw';
-            bf.style.top = (30 + Math.random() * 40) + 'vh';
-            bf.style.fontSize = (20 + Math.random() * 15) + 'px';
-            bf.style.animationDelay = (Math.random() * 5) + 's';
+    <!-- JavaScript to trigger the walk when she clicks the button -->
+    <script>
+        function startWalk() {
+            // Fade out the start screen
+            const startScreen = document.getElementById('start-screen');
+            startScreen.style.opacity = '0';
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+            }, 2500);
+
+            // Trigger the walk-through animations
+            const bgImg = document.getElementById('bg-img');
+            const msg = document.getElementById('msg');
             
-            document.body.appendChild(bf);
+            bgImg.classList.add('walk-animation');
+            msg.classList.add('show-message');
         }
     </script>
 </body>
